@@ -1063,7 +1063,7 @@ class LearnerWorker:
                 torch.backends.cudnn.benchmark = True
 
                 # we should already see only one CUDA device, because of env vars
-                print(torch.cuda.device_count())
+                raise Exception(torch.cuda.device_count())
                 assert torch.cuda.device_count() == 1
                 self.device = torch.device('cuda', index=0)
             else:
