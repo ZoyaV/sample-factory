@@ -1058,11 +1058,12 @@ class LearnerWorker:
             # this does not help with a single experiment
             # but seems to do better when we're running more than one experiment in parallel
             torch.set_num_threads(1)
-
+        
             if self.cfg.device == 'gpu':
                 torch.backends.cudnn.benchmark = True
 
                 # we should already see only one CUDA device, because of env vars
+                print(torch.cuda.device_count())
                 assert torch.cuda.device_count() == 1
                 self.device = torch.device('cuda', index=0)
             else:
